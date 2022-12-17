@@ -16,9 +16,9 @@ Table - Tasks
 |    Field    |     Type     | Constraints |
 +-------------+--------------+-------------+
 | id          | int          | primary key |
-| title       | varchar(200) | NOT NULL    |
+| title       | text         | NOT NULL    |
 | description | text         |             |
-| completed   | bool         |             |
+| completed   | int          |             | # This is because SQLite does not support boolean
 +-------------+--------------+-------------+
 
 
@@ -27,7 +27,7 @@ Table - Meta
 +-------+--------------+-------------+
 | Field |     Type     | Constraints |
 +-------+--------------+-------------+
-| key   | varchar(200) | Primary Key |
+| key   | text         | Primary Key |
 | value | text         | NOT NULL    |
 +-------+--------------+-------------+
 

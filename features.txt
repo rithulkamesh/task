@@ -1,0 +1,33 @@
+======= Features of Task =======
+
+1. Create tasks, Store in local SQLite in ~/.config/tasks
+2. Mark them as complete or not complete
+3. Use Vim to update description in SQLite
+4. List Tasks
+5. Delete Tasks
+6. If Current Task widget is installed and path is set, update current task `task current <id>`
+
+
+====== Data Model =======
+
+Table - Tasks
+
++-------------+--------------+-------------+
+|    Field    |     Type     | Constraints |
++-------------+--------------+-------------+
+| id          | int          | primary key |
+| title       | varchar(200) | NOT NULL    |
+| description | text         |             |
+| completed   | bool         |             |
++-------------+--------------+-------------+
+
+
+Table - Meta
+
++-------+--------------+-------------+
+| Field |     Type     | Constraints |
++-------+--------------+-------------+
+| key   | varchar(200) | Primary Key |
+| value | text         | NOT NULL    |
++-------+--------------+-------------+
+

@@ -1,20 +1,22 @@
 package main
 
 import (
-	//	"database/sql"
-	//	"github.com/mattn/go-sqlite3"
+	"database/sql"
+	"github.com/rithulkamesh/task/db"
 	"github.com/urfave/cli"
 	"os"
 	"path/filepath"
 )
 
-var app = cli.NewApp()
+var _ = cli.NewApp()
+var dat *sql.DB
 
 func main() {
-	task_init()
+	TaskInit()
+
 }
 
-func task_init() {
+func TaskInit() {
 	/*
 
 		Initialise the task program, this handles the creation of the tasks folder under config,
@@ -25,10 +27,20 @@ func task_init() {
 
 	var homedir, _ = os.UserHomeDir()
 	path := filepath.Join(homedir, ".config", "task")
-	os.MkdirAll(path, os.ModePerm)
+	_ = os.MkdirAll(path, os.ModePerm)
 
-	return
-}
+	var _, err = os.Stat(path + "/tasks.db")
+	if os.IsNotExist(err) {
+		os.Create(path + "/tasks.db")
 
-func create_task() {
+	}
+
+	dat, _ = db.CreateConnection(path + "/tasks.db")
+
+	dat.Exec(`CREATE TABLE if not exists [tasks] (
+		id integer primary key autoincrement,
+		title text not null,
+		description text,
+		completed integer not null default 0
+	)`)
 }

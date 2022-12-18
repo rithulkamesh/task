@@ -21,13 +21,3 @@ Table - Tasks
 | completed   | int          |             | # This is because SQLite does not support boolean
 +-------------+--------------+-------------+
 
-
-Table - Meta
-
-+-------+--------------+-------------+
-| Field |     Type     | Constraints |
-+-------+--------------+-------------+
-| key   | text         | Primary Key |
-| value | text         | NOT NULL    |
-+-------+--------------+-------------+
-

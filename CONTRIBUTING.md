@@ -134,26 +134,23 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/rithul
 <!-- You might want to create an issue template for enhancement suggestions that can be used as a guide and that defines the structure of the information to be included. If you do so, reference it here in the description. -->
 
 ### Your First Code Contribution
-<!-- TODO
-include Setup of env, IDE and typical getting started instructions?
 
--->
+```git clone git@github.com:rithulkamesh/task.git```
+
+Open up the created folder in ur favourite IDE and enjoy
+
 
 ### Improving The Documentation
-<!-- TODO
-Updating, improving and correcting the documentation
 
--->
+Navigate to the doc folder, run `yarn dev` to start the dev server.
+Make your changes in your favourite IDE and commit.
+PR your changes to master
+
 
 ## Styleguides
 ### Commit Messages
-<!-- TODO
 
--->
+Please install [glitter](https://github.com/milo123459/glitter) and use the tool to stylize your commit messages. 
 
-## Join The Project Team
-<!-- TODO -->
-
-<!-- omit in toc -->
 ## Attribution
 This guide is based on the **contributing-gen**. [Make your own](https://github.com/bttger/contributing-gen)!

@@ -3,15 +3,15 @@
     "commit_message_arguments": [
         {
             "argument": 1,
-            "case": "lower",
+            "case": "sentence",
             "type_enums": [
-                "fix",
-                "feat",
-                "chore",
-                "refactor",
-                "docs",
-                "void",
-                "deps"
+                "Fix",
+                "Feat",
+                "Chore",
+                "Refactor",
+                "Docs",
+                "Void",
+                "Deps"
             ]
         }
     ]

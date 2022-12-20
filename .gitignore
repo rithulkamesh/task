@@ -23,3 +23,8 @@ go.work
 
 # MacOS
 .DS_Store
+
+
+# Added by cargo
+
+/target

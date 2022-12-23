@@ -30,7 +30,7 @@ pub enum Commands {
     Delete {
         /// Title of the task to delete
         #[clap(short, long)]
-        title: String,
+        id: i32,
     },
 
     /// Lists all exising tasks
@@ -44,6 +44,12 @@ pub enum Commands {
 
     Widget {
         /// ID of the task to put into the widget
+        #[clap(short, long)]
+        id: i32,
+    },
+
+    Info {
+        /// ID of the task to get info about
         #[clap(short, long)]
         id: i32,
     },

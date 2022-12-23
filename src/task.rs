@@ -49,13 +49,11 @@ pub fn toggle_task(id: &i32) {
         true
     }) {}
 
-    if done {
-        conn.execute(format!("update tasks set done = 0 where id = {}", id))
-            .expect("Failed to update task");
-    } else {
-        conn.execute(format!("update tasks set done = 1 where id = {}", id))
-            .expect("Failed to update task");
-    }
+    conn.execute(format!(
+        "update tasks set done = {} where id = {}",
+        !done as i32, id
+    ))
+    .expect("Failed to update task");
 }
 
 pub fn display_task() {

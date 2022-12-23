@@ -20,6 +20,10 @@ fn main() {
         Some(Update { id, title }) => update_task(id, title),
         Some(List {}) => display_task(),
         Some(Toggle { id }) => toggle_task(id),
+        Some(Info { id }) => info(id),
+        Some(Delete { id }) => delete_task(id),
+        Some(WidgetLoc { loc }) => widget_loc(loc),
+        Some(Widget { id }) => widget(id),
         _ => {
             println!("\nInvalid Command, Run `ideabank help` for help with using the CLI")
         }

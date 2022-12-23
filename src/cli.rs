@@ -53,4 +53,10 @@ pub enum Commands {
         #[clap(short, long)]
         id: i32,
     },
+
+    WidgetLoc {
+        /// Location of the widget
+        #[clap(short, long)]
+        loc: String,
+    },
 }

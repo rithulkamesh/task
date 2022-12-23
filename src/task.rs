@@ -1,3 +1,4 @@
+use crate::colored::Colorize;
 use sqlite::Connection;
 use std::{
     fs::File,
@@ -6,14 +7,12 @@ use std::{
 };
 use tempfile::NamedTempFile;
 pub fn create_task(title: &String) {
-    let mut config_dir = dirs::config_dir().expect("Failed to get config directory");
-    config_dir.push("task/tasks.db");
-    let conn = Connection::open(config_dir).expect("Failed to open database");
+    let conn = get_conn();
 
-    let mut temp_file = NamedTempFile::new().unwrap();
+    let mut temp_file = NamedTempFile::new().expect("Failed to create temp file");
     temp_file
         .write_all(format!("Task: {}\n", title).as_bytes())
-        .unwrap();
+        .expect("Failed to write to temp file");
     let path = temp_file.path();
 
     Command::new("vim")
@@ -32,4 +31,41 @@ pub fn create_task(title: &String) {
     .expect("Failed to insert task");
 
     drop(conn);
+}
+
+pub fn update_task(id: &i32, title: &Option<String>) {
+    let conn = get_conn();
+}
+
+pub fn toggle_task(id: &i32) {
+    let conn = get_conn();
+}
+
+pub fn display_task() {
+    let conn = get_conn();
+
+    for _ in conn.iterate("select * from tasks;", |row| {
+        match row[2].1 {
+            Some("1") => {
+                println!(
+                    "- [x] ({}) {}",
+                    row[0].1.unwrap(),
+                    row[1].1.unwrap().green().bold()
+                )
+            }
+
+            _ => {
+                println!("- [ ] ({}) {}", row[0].1.unwrap(), row[1].1.unwrap().blue())
+            }
+        }
+        true
+    }) {}
+
+    drop(conn);
+}
+
+fn get_conn() -> Connection {
+    let mut config_dir = dirs::config_dir().expect("Failed to get config directory");
+    config_dir.push("task/tasks.db");
+    Connection::open(config_dir).expect("Failed to open database")
 }

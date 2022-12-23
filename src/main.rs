@@ -1,11 +1,14 @@
 use clap::Parser;
 
 mod cli;
-use anyhow::Error;
 use cli::{Cli, Commands::*};
 use sqlite::Connection;
 mod task;
 use task::*;
+
+extern crate colored;
+
+use colored::*;
 
 fn main() {
     init();
@@ -14,6 +17,8 @@ fn main() {
     let cli = Cli::parse();
     match &cli.command {
         Some(New { title }) => create_task(&title),
+        Some(Update { id, title }) => update_task(id, title),
+        Some(List {}) => display_task(),
         _ => {
             println!("\nInvalid Command, Run `ideabank help` for help with using the CLI")
         }
@@ -32,7 +37,7 @@ fn init() {
     }
     let conn = Connection::open(config_dir).expect("Failed to open database");
     conn.execute(
-        "CREATE TABLE IF NOT EXISTS tasks (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, done INTEGER, description TEXT)",
+        "CREATE TABLE IF NOT EXISTS tasks (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, done INTEGER default 0 not null, description TEXT)",
     )
     .expect("Failed to create table");
     drop(conn);

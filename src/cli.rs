@@ -20,7 +20,10 @@ pub enum Commands {
     Update {
         /// Title of the task
         #[clap(short, long)]
-        title: String,
+        id: i32,
+
+        #[clap(short, long)]
+        title: Option<String>,
     },
 
     /// Deletes an existing task

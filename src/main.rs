@@ -19,6 +19,7 @@ fn main() {
         Some(New { title }) => create_task(&title),
         Some(Update { id, title }) => update_task(id, title),
         Some(List {}) => display_task(),
+        Some(Toggle { id }) => toggle_task(id),
         _ => {
             println!("\nInvalid Command, Run `ideabank help` for help with using the CLI")
         }

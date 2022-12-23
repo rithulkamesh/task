@@ -39,6 +39,23 @@ pub fn update_task(id: &i32, title: &Option<String>) {
 
 pub fn toggle_task(id: &i32) {
     let conn = get_conn();
+    // Get task from database, convert to boolean, and toggle it
+    let mut done = false;
+    for _ in conn.iterate(format!("select done from tasks where id = {}", id), |row| {
+        match row[0].1 {
+            Some("1") => done = true,
+            _ => done = false,
+        }
+        true
+    }) {}
+
+    if done {
+        conn.execute(format!("update tasks set done = 0 where id = {}", id))
+            .expect("Failed to update task");
+    } else {
+        conn.execute(format!("update tasks set done = 1 where id = {}", id))
+            .expect("Failed to update task");
+    }
 }
 
 pub fn display_task() {

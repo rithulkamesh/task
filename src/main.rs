@@ -8,8 +8,6 @@ use task::*;
 
 extern crate colored;
 
-use colored::*;
-
 fn main() {
     init();
 

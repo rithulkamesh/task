@@ -36,24 +36,28 @@ pub enum Commands {
     /// Lists all exising tasks
     List {},
 
+    /// Toggles the completion of a task
     Toggle {
         /// ID of the task to toggle
         #[clap(short, long)]
         id: i32,
     },
 
+    /// Updates the widget (Needs widget-loc)
     Widget {
         /// ID of the task to put into the widget
         #[clap(short, long)]
         id: i32,
     },
 
+    /// Puts the Title and the description in a 'less'
     Info {
         /// ID of the task to get info about
         #[clap(short, long)]
         id: i32,
     },
 
+    /// Sets the location of the widget
     WidgetLoc {
         /// Location of the widget
         #[clap(short, long)]

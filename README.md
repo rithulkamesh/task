@@ -28,7 +28,9 @@ Options:
 
 Cargo provides a nifty little feature to install from github, you can run
 
-```cargo install --git https://github.com/rithulkamesh/task```
+```
+cargo install --git https://github.com/rithulkamesh/task
+```
 
 ## Contributing
 

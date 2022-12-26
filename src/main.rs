@@ -25,7 +25,7 @@ fn main() {
         Some(WidgetLoc { loc }) => widget_loc(loc),
         Some(Widget { id }) => widget(id),
         _ => {
-            println!("\nInvalid Command, Run `ideabank help` for help with using the CLI")
+            println!("\nInvalid Command, Run `task help` for help with using the CLI")
         }
     };
 }

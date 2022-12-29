@@ -38,7 +38,6 @@ pub fn create_task(title: &String) {
     ))
     .expect("Failed to insert task");
 
-    drop(conn);
 }
 
 pub fn info(id: &i32) {
@@ -61,7 +60,6 @@ pub fn info(id: &i32) {
         .status()
         .expect("Failed to open less");
 
-    drop(conn);
 }
 
 pub fn update_task(id: &i32, title: &Option<String>) {
@@ -107,7 +105,6 @@ pub fn update_task(id: &i32, title: &Option<String>) {
     ))
     .expect("Failed to update description");
 
-    drop(conn);
 }
 
 pub fn toggle_task(id: &i32) {
@@ -148,8 +145,6 @@ pub fn display_task() {
         }
         true
     }) {}
-
-    drop(conn);
 }
 
 pub fn delete_task(id: &i32) {
@@ -160,8 +155,6 @@ pub fn delete_task(id: &i32) {
         id
     ))
     .expect("Failed to delete task");
-
-    drop(conn);
 }
 
 pub fn widget_loc(loc: &String) {
@@ -174,8 +167,6 @@ pub fn widget_loc(loc: &String) {
     let mut file = File::create(config_dir).expect("Failed to create config file");
     file.write_all(format!("{{\"loc\": \"{}\"}}", loc).as_bytes())
         .expect("Failed to write to config file");
-
-    drop(file);
 }
 
 pub fn widget(id: &i32) {
@@ -204,7 +195,6 @@ pub fn widget(id: &i32) {
     file.write_all(format!("{{\"task\": \"{}\"}}", content).as_bytes())
         .expect("Failed to write to widget file");
 
-    drop(file);
 }
 fn get_conn() -> Connection {
     let mut config_dir = dirs::config_dir().expect("Failed to get config directory");

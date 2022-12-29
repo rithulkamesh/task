@@ -9,8 +9,6 @@ use task::*;
 extern crate colored;
 
 fn main() {
-    init();
-
     let _ = init();
     let cli = Cli::parse();
     match &cli.command {
@@ -43,5 +41,4 @@ fn init() {
         "CREATE TABLE IF NOT EXISTS tasks (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, done INTEGER default 0 not null, description TEXT)",
     )
     .expect("Failed to create table");
-    drop(conn);
 }
